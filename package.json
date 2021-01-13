@@ -1,0 +1,14 @@
+{
+  "name": "pic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "esbuild": "^0.8.31",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "build": "esbuild web/main.js --bundle --outfile=web/static/bundle.js"
+  }
+}

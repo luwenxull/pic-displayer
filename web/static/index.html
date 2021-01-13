@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIC</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    #app {
+      overflow: hidden;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+      height: 100vh;
+      overflow: auto;
+    }
+
+    #app>div {
+      grid-area: auto;
+      box-shadow: 0 0 4px #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <div>1</div>
+    <div>2</div>
+    <div>3</div> -->
+
+  </div>
+  <script src="bundle.js"></script>
+</body>
+
+</html>
