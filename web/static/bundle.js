@@ -1125,7 +1125,7 @@
       right: 0,
       bottom: 0,
       left: 0,
-      background: "#6666",
+      background: "#666d",
       "z-index": -1
     });
     container.append(cover);
