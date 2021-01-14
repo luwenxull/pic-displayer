@@ -8,15 +8,33 @@ app.use(express.static("web/static"));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/pic", (req, res) => {
-  const { pageIndex, pageSize } = req.query;
-  fs.readdir(path.resolve(__dirname, "resources"), (err, files) => {
-    res.send(files.slice((pageIndex - 1) * pageSize, pageIndex * pageSize));
-  });
+app.get("/files", (req, res) => {
+  const { pageIndex, pageSize, path: p = "" } = req.query;
+  fs.readdir(
+    path.resolve(__dirname, "resources", p),
+    {
+      withFileTypes: true,
+    },
+    (err, files) => {
+      res.send(
+        files
+          .map((file) => {
+            return {
+              isDirectory: file.isDirectory() || file.isSymbolicLink(),
+              name: file.name,
+            };
+          })
+          .sort((a, b) => {
+            return a.isDirectory ? -1 : 1;
+          })
+          .slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
+      );
+    }
+  );
 });
 
-app.get("/pic/:p", (req, res) => {
-  const { p } = req.params;
+app.get("/file", (req, res) => {
+  const { path: p } = req.query;
   res.sendFile(path.resolve(__dirname, "resources", p));
 });
 

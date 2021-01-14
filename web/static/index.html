@@ -11,40 +11,55 @@
     }
 
     body {
-      margin: 0;
+      margin: 0px;
     }
 
     #app {
-      overflow: hidden;
+      padding: 8px 0;
       display: grid;
-      gap: 8px;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 200px;
+      flex-wrap: wrap;
       height: 100vh;
       overflow: auto;
+      grid-template-columns: repeat(auto-fill, 200px);
+      grid-auto-rows: 200px;
+      gap: 8px;
+      row-gap: 16px;
+      justify-content: space-evenly;
+      font-weight: 300;
     }
 
     #app>div {
-      grid-area: auto;
-      box-shadow: 0 0 4px #eee;
+      box-shadow: 0 0 4px #999;
       border-radius: 4px;
       overflow: hidden;
+      width: 200px;
+      margin: 4px;
+      background: #eee9;
+    }
+
+    .file {
+      height: 200px;
+    }
+
+    .dir {
+      display: flex;
+      cursor: pointer;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
     }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      /* opacity: 0; */
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <!-- <div>1</div>
-    <div>2</div>
-    <div>3</div> -->
-
   </div>
   <script src="bundle.js"></script>
 </body>
