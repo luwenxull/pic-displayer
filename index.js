@@ -18,14 +18,24 @@ app.get("/files", (req, res) => {
     (err, files) => {
       res.send(
         files
+          .filter((file) => {
+            return !file.name.startsWith(".");
+          })
           .map((file) => {
             return {
               isDirectory: file.isDirectory() || file.isSymbolicLink(),
               name: file.name,
+              ctime: fs.statSync(
+                path.resolve(__dirname, "resources", p, file.name)
+              ).ctime,
             };
           })
           .sort((a, b) => {
-            return a.isDirectory ? -1 : 1;
+            if (a.isDirectory === b.isDirectory) {
+              return b.ctime - a.ctime;
+            } else {
+              return a.isDirectory ? -1 : 1;
+            }
           })
           .slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
       );

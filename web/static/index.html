@@ -21,8 +21,7 @@
       height: 100vh;
       overflow: auto;
       grid-template-columns: repeat(auto-fill, 200px);
-      grid-auto-rows: 200px;
-      gap: 8px;
+      grid-auto-rows: max-content;
       row-gap: 16px;
       justify-content: space-evenly;
       font-weight: 300;
@@ -33,8 +32,15 @@
       border-radius: 4px;
       overflow: hidden;
       width: 200px;
-      margin: 4px;
+      /* margin: 4px; */
       background: #eee9;
+      cursor: pointer;
+    }
+
+    #app>div:hover {
+      transform: scale(1.05);
+      box-shadow: 4px 4px 8px #999;
+      transition: 200ms;
     }
 
     .file {
@@ -43,18 +49,39 @@
 
     .dir {
       display: flex;
-      cursor: pointer;
       height: 50px;
       align-items: center;
       justify-content: center;
     }
 
-    img {
+    .file>img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       /* opacity: 0; */
     }
+
+    .arrow {
+      width: 40px;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 24px;
+    }
+
+    .arrow.right {
+      right: 24px;
+    }
+
+    .arrow.close {
+      position: fixed;
+      right: 24px;
+      top: 24px;
+    }
+
+    .dialog-wrapper {}
   </style>
 </head>
 
